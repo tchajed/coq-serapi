@@ -28,11 +28,11 @@ let create_document ~require_lib ~in_file ~stm_flags ~quick ~iload_path ~debug ~
 
   (* coq initialization *)
   coq_init
-    { fb_handler = (fun _ -> ())  (* XXXX *)
+    { fb_handler = (fun _ _ -> ())  (* XXXX *)
     ; ml_load    = None
     ; debug
     ; allow_sprop
-    };
+    } Format.std_formatter;
 
   (* document initialization *)
 

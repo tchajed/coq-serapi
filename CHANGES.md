@@ -24,6 +24,13 @@
 
  * [sertop ] Forward port sername from 0.7.1 (@ejgallego)
 
+ * [sertop ] New `(Fork (fifo_in file) (fifo_out file))` command, that
+             will (hard) fork a new SerAPI process and redirect the
+             input / output towards the given Unix FIFOs. This API is
+             experimental but should allow quite a few advantages to
+             some users willing to perform speculative execution.
+             (#210 , improves #202 , @ejgallego)
+
 ## Version 0.11.0:
 
  * [general] (!) support Coq 8.11, a few datatypes have changed, in
