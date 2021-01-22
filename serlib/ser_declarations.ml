@@ -28,7 +28,7 @@ module Vmvalues    = Ser_vmvalues
 module Conv_oracle = Ser_conv_oracle
 module Mod_subst   = Ser_mod_subst
 module Opaqueproof = Ser_opaqueproof
-module Cemitcodes  = Ser_cemitcodes
+module Vmemitcodes  = Ser_cemitcodes
 module Retroknowledge = Ser_retroknowledge
 
 type template_arity =

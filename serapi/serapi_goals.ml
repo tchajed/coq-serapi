@@ -30,8 +30,6 @@ type 'a reified_goal =
 type 'a ser_goals =
   { goals : 'a list
   ; stack : ('a list * 'a list) list
-  ; shelf : 'a list
-  ; given_up : 'a list
   ; bullet : Pp.t option
   }
 
@@ -78,14 +76,12 @@ let get_goals_gen (ppx : Environ.env -> Evd.evar_map -> Constr.t -> 'a) ~doc sid
   : 'a reified_goal ser_goals option =
   match Stm.state_of_id ~doc sid with
   | `Valid (Some { Vernacstate.lemmas = Some lemmas ; _ } ) ->
-    let proof = Vernacstate.LemmaStack.with_top_pstate lemmas
-        ~f:(fun pstate -> Proof_global.get_proof pstate) in
-    let Proof.{ goals; stack; shelf; given_up; sigma; _ } = Proof.data proof in
+    let proof = Vernacstate.LemmaStack.with_top lemmas
+        ~f:(fun pstate -> Declare.Proof.get pstate) in
+    let Proof.{ goals; stack; sigma; _ } = Proof.data proof in
     let ppx = List.map (process_goal_gen ppx sigma) in Some
       { goals = ppx goals
       ; stack = List.map (fun (g1,g2) -> ppx g1, ppx g2) stack
-      ; shelf = ppx shelf
-      ; given_up = ppx given_up
       ; bullet = if_not_empty @@ Proof_bullet.suggest proof
       }
   | `Expired | `Error _ | `Valid _ -> None

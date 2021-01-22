@@ -35,7 +35,7 @@ type patches = {
   reloc_infos : (reloc_info * int array) array;
 }
 
-type to_patch = emitcodes * patches * Cbytecodes.fv
+type to_patch = emitcodes * patches * Vmbytecodes.fv
 (* [@@deriving sexp] *)
 
 type _to_patch_substituted =
@@ -45,12 +45,12 @@ type _to_patch_substituted =
 (* [@@deriving sexp] *)
 
 type to_patch_substituted =
-  [%import: Cemitcodes.to_patch_substituted]
+  [%import: Vmemitcodes.to_patch_substituted]
 
 let sexp_of_to_patch_substituted =
-  Serlib_base.sexp_of_opaque ~typ:"Cemitcodes.to_patch_substituted"
+  Serlib_base.sexp_of_opaque ~typ:"Vmemitcodes.to_patch_substituted"
 
 (* XXX: Dummy value *)
 let to_patch_substituted_of_sexp _ =
   Obj.magic PBCconstant
-  (* Serlib_base.opaque_of_sexp ~typ:"Cemitcodes.to_patch_substituted" *)
+  (* Serlib_base.opaque_of_sexp ~typ:"Vmemitcodes.to_patch_substituted" *)

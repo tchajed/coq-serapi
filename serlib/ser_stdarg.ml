@@ -36,7 +36,7 @@ let ser_wit_int_or_var = Ser_genarg.{
 
 let ser_wit_ident  = Ser_genarg.mk_uniform Ser_names.Id.sexp_of_t Ser_names.Id.t_of_sexp
 
-let ser_wit_var = Ser_genarg.{
+let ser_wit_hyp = Ser_genarg.{
     raw_ser = Ser_names.sexp_of_lident;
     glb_ser = Ser_names.sexp_of_lident;
     top_ser = Ser_names.Id.sexp_of_t;
@@ -118,7 +118,7 @@ let register () =
   Ser_genarg.register_genser Stdarg.wit_string ser_wit_string;
   Ser_genarg.register_genser Stdarg.wit_uconstr ser_wit_uconstr;
   Ser_genarg.register_genser Stdarg.wit_unit ser_wit_unit;
-  Ser_genarg.register_genser Stdarg.wit_var ser_wit_var;
+  Ser_genarg.register_genser Stdarg.wit_hyp ser_wit_hyp;
 
   ()
 
