@@ -119,7 +119,7 @@ type option_setting =
  *   [@@deriving sexp] *)
 
 type sort_expr =
-  [%import: Vernacexpr.sort_expr]
+  [%import: Constrexpr.sort_expr]
   [@@deriving sexp,yojson]
 
 type definition_expr =

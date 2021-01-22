@@ -80,6 +80,8 @@ type ('constr, 'types) pcofixpoint =
   [%import: ('constr, 'types) Constr.pcofixpoint]
   [@@deriving sexp,yojson]
 
+(* TODO: import case_invert *)
+
 type constr = Constr.constr
 type types  = Constr.constr
 
@@ -126,7 +128,7 @@ let rec _constr_put (c : constr) : _constr =
   | C.Const p             -> Const p
   | C.Ind(p,q)            -> Ind (p,q)
   | C.Construct(p)        -> Construct (p)
-  | C.Case(ci, d, c, ca)  -> Case(ci, cr d, cr c, cra ca)
+  | C.Case(ci, d, iv, c, ca)  -> Case(ci, cr d, cr c, cra ca)
   (* (int array * int) * (Name.t array * 'types array * 'constr array)) *)
   | C.Fix(p,(na,u1,u2))   -> Fix(p, (na, cra u1, cra u2))
   | C.CoFix(p,(na,u1,u2)) -> CoFix(p, (na, cra u1, cra u2))

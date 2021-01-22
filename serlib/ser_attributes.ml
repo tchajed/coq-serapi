@@ -17,7 +17,9 @@
 
 open Sexplib.Std
 
-type vernac_flag =
+type vernac_flag_type =
+  [%import: Attributes.vernac_flag_type]
+and vernac_flag =
   [%import: Attributes.vernac_flag]
 and vernac_flag_value =
   [%import: Attributes.vernac_flag_value]
